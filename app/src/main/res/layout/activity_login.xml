@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <!--Logo-->
+    <ImageView
+        android:layout_width="@dimen/login_logo_width"
+        android:layout_height="@dimen/login_logo_heigth"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/login_imgLogo_mrgTop"
+        android:src="@drawable/ic_school" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--User name-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_lbl_user_name"
+                android:textColor="@color/login_lbl"
+                android:textSize="@dimen/login_label_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/login_edt_username"
+                android:layout_width="@dimen/all_activity_edt_width"
+                android:layout_height="@dimen/all_activity_edt_height"
+                android:background="@drawable/custom_edt_login"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/all_activity_edt_paddingLeft"
+                android:paddingRight="@dimen/all_activity_edt_paddingRight" />
+        </LinearLayout>
+
+        <!--password-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_lbl_pass"
+                android:textColor="@color/login_lbl"
+                android:textSize="@dimen/login_label_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/login_edt_pass"
+                android:layout_width="@dimen/all_activity_edt_width"
+                android:layout_height="@dimen/all_activity_edt_height"
+                android:background="@drawable/custom_edt_login"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:paddingLeft="@dimen/all_activity_edt_paddingLeft"
+                android:paddingRight="@dimen/all_activity_edt_paddingRight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center|bottom"
+            android:orientation="vertical">
+            <!--Button submit-->
+            <Button
+                android:id="@+id/login_btn_login"
+                android:layout_width="@dimen/all_activity_btn_width"
+                android:layout_height="@dimen/all_activity_btn_height"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_btn"
+                android:text="@string/login"
+                android:textColor="@color/backgroundColor"
+                android:textSize="@dimen/txtSize_lbl_btn"
+                android:textStyle="bold" />
+            <!-- forgot password-->
+            <Button
+                android:id="@+id/login_btn_forgot"
+                android:layout_width="@dimen/all_activity_btn_width"
+                android:layout_height="@dimen/all_activity_btn_height"
+                android:layout_gravity="center"
+                android:background="@drawable/transparent_br"
+                android:enabled="true"
+                android:text="@string/forgotpassword"
+                android:textSize="@dimen/login_txtSize_lbl_forgot"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

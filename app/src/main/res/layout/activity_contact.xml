@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ContactActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/contact_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_activity_toolbar_height"
+        android:background="@color/backgroundColor"
+        android:gravity="center_vertical"
+        android:theme="@style/AppTheme"
+        app:titleTextColor="@color/black" />
+    <!--View Container-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColorOpacity"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="@dimen/contact_title_width"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/contact_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/contact_txtSize_title"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:orientation="vertical"
+            android:weightSum="10">
+            <!--title-->
+            <TextView
+                android:layout_width="@dimen/all_activity_edt_width"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/contact_lbl_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/contact_lbl_form" />
+
+            <EditText
+                android:id="@+id/contact_edt_title"
+                android:layout_width="@dimen/all_activity_edt_width"
+                android:layout_height="@dimen/all_activity_edt_height"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_edt_contact"
+                android:hint="@string/contact_hint_title"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/all_activity_edt_paddingLeft"
+                android:paddingRight="@dimen/all_activity_edt_paddingRight" />
+            <!--Content-->
+            <TextView
+                android:layout_width="@dimen/all_activity_edt_width"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/contact_lbl_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/contact_lbl_form" />
+
+            <EditText
+                android:id="@+id/contact_edt_content"
+                android:layout_width="@dimen/all_activity_edt_width"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:background="@drawable/custom_edt_contact"
+                android:gravity="top"
+                android:hint="@string/contact_hint_content"
+                android:inputType="text|textMultiLine"
+                android:paddingLeft="@dimen/all_activity_edt_paddingLeft"
+                android:paddingRight="@dimen/all_activity_edt_paddingRight"
+                android:paddingTop="@dimen/all_activity_edt_paddingTop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/contact_btn_submit"
+                    android:layout_width="@dimen/all_activity_btn_width"
+                    android:layout_height="@dimen/all_activity_btn_height"
+                    android:background="@drawable/custom_btn"
+                    android:text="@string/submit"
+                    android:textColor="@color/backgroundColor"
+                    android:textSize="@dimen/txtSize_lbl_btn" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

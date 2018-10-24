@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_rowWeight="10"
+    android:orientation="vertical"
+    tools:context=".ServiceActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/service_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_activity_toolbar_height"
+        android:background="@color/backgroundColor"
+        android:gravity="center_vertical"
+        android:theme="@style/AppTheme"
+        app:titleTextColor="@color/black" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/all_activity_toolbar_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_toolbar"></com.google.android.gms.maps.MapView>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/float_button_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        fab:menu_animationDelayPerItem="55"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_colorNormal="@color/backgroundColor"
+        fab:menu_colorPressed="@color/backgroundColorOpacity"
+        fab:menu_colorRipple="#99d4d4d4"
+        fab:menu_fab_label="Floating Action Menu"
+        fab:menu_fab_size="normal"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_labels_colorNormal="#333"
+        fab:menu_labels_colorPressed="#444"
+        fab:menu_labels_colorRipple="#66efecec"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_margin="0dp"
+        fab:menu_labels_maxLines="-1"
+        fab:menu_labels_padding="8dp"
+        fab:menu_labels_position="left"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_textColor="@color/backgroundColor"
+        fab:menu_labels_textSize="15sp"
+        fab:menu_openDirection="up"
+        fab:menu_shadowColor="@color/blackButton"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="4dp"
+        fab:menu_showShadow="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/service_floatBtn_item_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/home_schedule"
+            android:clickable="true"
+            android:src="@drawable/ic_star"
+            fab:fab_label="@string/service_floatBtn_home"
+            fab:fab_size="mini"
+            fab:menu_fab_hide_animation="@anim/fab_scale_down" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/service_floatBtn_item_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/home_attendance"
+            android:clickable="true"
+            android:src="@drawable/ic_star"
+            fab:fab_label="@string/service_floatBtn_food"
+            fab:fab_size="mini"
+            fab:menu_fab_hide_animation="@anim/fab_scale_down" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/service_floatBtn_item_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/home_info"
+            android:clickable="true"
+            android:src="@drawable/ic_star"
+            fab:fab_label="@string/service_floatBtn_works"
+            fab:fab_size="mini"
+            fab:menu_fab_hide_animation="@anim/fab_scale_down" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

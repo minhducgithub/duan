@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/attendance_list_item_height">
+
+    <TextView
+        android:id="@+id/attendance_list_item_model_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/attendance_list_item_marginLeft_txt"
+        android:text="Model Name" />
+
+</FrameLayout>

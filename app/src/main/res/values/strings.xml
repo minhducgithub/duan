@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">SchoolHelper</string>
+    <string name="title_activity_welcome">Welcome</string>
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Hello Food!</string>
+    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+
+    <string name="slide_2_title">Movie Tickets</string>
+    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="login_lbl_user_name">User name</string>
+    <string name="hint_password">**********</string>
+    <string name="hint_email">ndttam.dev@gmail.com</string>
+    <string name="login">Login</string>
+    <string name="forgotpassword"><i><u>Forgot password ?</u></i></string>
+    <string name="txtSize_forgot">14sp</string>
+    <string name="login_lbl_pass">Password</string>
+    <string name="forgot_label_text"><b>Please type your email and press submit button</b></string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="author_name">NGUYEN DUC THANH TAM</string>
+    <string name="home_label_block">Block:  </string>
+    <string name="home_label_default_block">  FALL 2018</string>
+    <string name="home_label_course">Course:  </string>
+    <string name="home_label_default_course">  12.3v2</string>
+    <string name="info">INFO</string>
+    <string name="contact">CONTACT</string>
+    <string name="service">SERVICE</string>
+    <string name="schedule">SCHEDULE</string>
+    <string name="attendance">ATTENDANCE</string>
+    <string name="contact_title">Please type your mind into form</string>
+    <string name="contact_lbl_title">Title</string>
+    <string name="contact_lbl_content">Content</string>
+    <string name="contact_hint_title">Your mind .....</string>
+    <string name="contact_hint_content">...........</string>
+    <string name="service_floatBtn_main">Please choose a service</string>
+    <string name="service_floatBtn_home">Home</string>
+    <string name="service_floatBtn_food">Food</string>
+    <string name="service_floatBtn_works">Works</string>
+    <string name="current_block">FALL 2018</string>
+    <string name="user_code">PS05854</string>
+    <string name="user_course">12.3v1</string>
+    <string name="card_view_lbl">Label</string>
+    <string name="lable_block">Block: </string>
+    <string name="user_status">HDI</string>
+    <string name="current_phone">0873456734</string>
+    <string name="current_email">abc234234234234@mail.com</string>
+    <string name="lable_code">Code: </string>
+    <string name="lable_course">Course: </string>
+    <string name="lable_status">Status: </string>
+    <string name="lable_mail">Email:</string>
+    <string name="lable_address">Address:</string>
+    <string name="current_address">Tam Phuoc, Long Thanh, Dong Nai</string>
+    <string name="lable_specialized">Specialized:</string>
+    <string name="lable_start">Start:</string>
+    <string name="current_start">20/09/2016</string>
+    <string name="lable_phone">Phone:</string>
+</resources>
