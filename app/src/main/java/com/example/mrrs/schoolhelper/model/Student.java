@@ -43,6 +43,24 @@ public class Student {
     @Expose
     private String svstart;
 
+//    public Student(String idsinhvien, String svhinh, String svten, String svblock, String svcode,
+//                   String svcourse, String svstatus, String svphone, String svemail, String svaddress,
+//                   String svspecialized, String svstart) {
+//        this.idsinhvien = idsinhvien;
+//        this.svhinh = svhinh;
+//        this.svten = svten;
+//        this.svblock = svblock;
+//        this.svcode = svcode;
+//        this.svcourse = svcourse;
+//        this.svstatus = svstatus;
+//        this.svphone = svphone;
+//        this.svemail = svemail;
+//        this.svaddress = svaddress;
+//        this.svspecialized = svspecialized;
+//        this.svstart = svstart;
+//    }
+
+
     public String getIdsinhvien() {
         return idsinhvien;
     }

@@ -1,4 +1,4 @@
-package service;
+package com.example.mrrs.schoolhelper.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

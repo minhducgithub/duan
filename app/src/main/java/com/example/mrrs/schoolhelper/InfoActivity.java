@@ -4,12 +4,15 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mrrs.schoolhelper.model.Student;
+
+import com.example.mrrs.schoolhelper.service.APIService;
+import com.example.mrrs.schoolhelper.service.Dataservice;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -18,9 +21,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import service.APIRetrofitClient;
-import service.APIService;
-import service.Dataservice;
 
 public class InfoActivity extends AppCompatActivity {
     TextView txt_block,txt_ten,txt_code,txt_course,txt_status
@@ -43,6 +43,7 @@ public class InfoActivity extends AppCompatActivity {
         });
         AnhXa();
         GetData();
+
     }
 
     private void AnhXa() {
