@@ -2,9 +2,6 @@ package com.example.mrrs.schoolhelper;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Service;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -18,10 +15,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.mrrs.schoolhelper.model.LocationMap;
+import com.example.mrrs.schoolhelper.service.APIService;
+import com.example.mrrs.schoolhelper.service.Dataservice;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.ConnectionResult;
@@ -33,10 +32,17 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ServiceActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -53,7 +59,6 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
     private FloatingActionMenu materialDesignFAM;
     private FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
     CheckPermission checkPermission;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +104,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO something when floating action menu first item clicked
+                GetLatLongLocation();
                 materialDesignFAM.close(true);
             }
         });
@@ -205,7 +211,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         criteria = new Criteria();
         // Getting the name of the best provider
         provider = locationManager.getBestProvider(criteria, true);
-        // Getting Current Location
+        // Getting Current LocationMap
         location = locationManager.getLastKnownLocation(provider);
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
@@ -308,6 +314,31 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+    private void GetLatLongLocation() {
+        Dataservice dataservice = APIService.getService();
+        Call<List<LocationMap>> callback = dataservice.GetDataLocation();
+        callback.enqueue(new Callback<List<LocationMap>>() {
+            @Override
+            public void onResponse(Call<List<LocationMap>> call, Response<List<LocationMap>> response) {
+                ArrayList<LocationMap> locationMapArrayList = (ArrayList<LocationMap>) response.body();
+                if(floatingActionButton1.hasOnClickListeners()){
+                    Toast.makeText(ServiceActivity.this, locationMapArrayList.get(0).getLatmap(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServiceActivity.this, locationMapArrayList.get(0).getLongmap(), Toast.LENGTH_SHORT).show();
+                }
+                if(floatingActionButton2.hasOnClickListeners()){
+                }
+                if(floatingActionButton3.hasOnClickListeners()){
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<LocationMap>> call, Throwable t) {
+
+            }
+        });
 
     }
 }
