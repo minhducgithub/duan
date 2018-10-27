@@ -59,6 +59,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
     private FloatingActionMenu materialDesignFAM;
     private FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
     CheckPermission checkPermission;
+    private ArrayList<LocationMap> locationMapArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
                 ServiceActivity.super.onBackPressed();
             }
         });
-
+        GetLatLongLocation();
         // Create object to run check permission function
         checkPermission = new CheckPermission();
 //        Check location permission
@@ -103,25 +104,47 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         // Catch event
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SearchMarker("Home");
                 //TODO something when floating action menu first item clicked
-                GetLatLongLocation();
                 materialDesignFAM.close(true);
             }
         });
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SearchMarker("Food");
                 //TODO something when floating action menu first item clicked
                 materialDesignFAM.close(true);
             }
         });
         floatingActionButton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SearchMarker("Work");
                 //TODO something when floating action menu first item clicked
                 materialDesignFAM.close(true);
             }
         });
     }
-
+    //Search Display Marker
+    private void SearchMarker (String select_stay){
+        for(int i = 0; i < locationMapArrayList.size(); i++){
+            Double latmap = Double.valueOf(locationMapArrayList.get(i).getLatmap());
+            Double longmap = Double.valueOf(locationMapArrayList.get(i).getLongmap());
+            String stay = locationMapArrayList.get(i).getStay();
+            if(stay.equals(select_stay)){
+                gmap.clear();
+                CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(latmap, longmap));
+                CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
+                MarkerOptions mp = new MarkerOptions();
+                mp.position(new LatLng(latmap, longmap));
+                mp.title(select_stay);
+                mp.snippet("Lat: "+latmap +" Long: "+longmap);
+                mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                gmap.addMarker(mp);
+                gmap.moveCamera(center);
+                gmap.animateCamera(zoom);
+            }
+        }
+    }
     //  CHECK FOR LOCATION PERMISSION
     public static boolean checkPermission(Activity activity) {
         int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION);
@@ -240,36 +263,36 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
             public void onMyLocationChange(Location location) {
                 CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
                 CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-                gmap.clear();
+//                gmap.clear();
                 MarkerOptions mp = new MarkerOptions();
                 mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-                mp.title("my position");
+                mp.title("My Position");
                 gmap.addMarker(mp);
-                gmap.moveCamera(center);
-                gmap.animateCamera(zoom);
-            }
+//                gmap.moveCamera(center);
+//                gmap.animateCamera(zoom);
+        }
         });
         locationManager.requestLocationUpdates(provider, 20000, 0, locationListener);
     }
 
     private void drawMarker(Location location) {
         // Remove any existing markers on the map
-        gmap.clear();
+//        gmap.clear();
         LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
         gmap.addMarker(new MarkerOptions()
                 .position(currentPosition)
                 .snippet("Lat:" + location.getLatitude() + "Lng:" + location.getLongitude())
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                 .title("ME"));
-        gmap.setOnMarkerClickListener(
-                new GoogleMap.OnMarkerClickListener() {
-                    boolean doNotMoveCameraToCenterMarker = true;
-
-                    public boolean onMarkerClick(Marker marker) {
-                        //Do whatever you need to do here ....
-                        return doNotMoveCameraToCenterMarker;
-                    }
-                });
+//        gmap.setOnMarkerClickListener(
+//                new GoogleMap.OnMarkerClickListener() {
+//                    boolean doNotMoveCameraToCenterMarker = true;
+//
+//                    public boolean onMarkerClick(Marker marker) {
+//                        //Do whatever you need to do here ....
+//                        return doNotMoveCameraToCenterMarker;
+//                    }
+//                });
     }
 
     private void setMarker(Float mLat, Float mLong, String type) {
@@ -322,16 +345,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         callback.enqueue(new Callback<List<LocationMap>>() {
             @Override
             public void onResponse(Call<List<LocationMap>> call, Response<List<LocationMap>> response) {
-                ArrayList<LocationMap> locationMapArrayList = (ArrayList<LocationMap>) response.body();
-                if(floatingActionButton1.hasOnClickListeners()){
-                    Toast.makeText(ServiceActivity.this, locationMapArrayList.get(0).getLatmap(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(ServiceActivity.this, locationMapArrayList.get(0).getLongmap(), Toast.LENGTH_SHORT).show();
-                }
-                if(floatingActionButton2.hasOnClickListeners()){
-                }
-                if(floatingActionButton3.hasOnClickListeners()){
-                }
-
+                locationMapArrayList = (ArrayList<LocationMap>) response.body();
             }
 
             @Override

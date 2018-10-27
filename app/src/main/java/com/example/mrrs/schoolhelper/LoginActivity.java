@@ -39,11 +39,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         initComponent();
         setOnClickListener();
-//        prefManager = new PrefManager(LoginActivity.this);
-//        if (!prefManager.isFirstTimeLogin()) {
-//            changeScreen(LoginActivity.this, HomeActivity.class);
-//            finish();
-//        }
+        prefManager = new PrefManager(LoginActivity.this);
+        if (!prefManager.isFirstTimeLogin()) {
+            changeScreen(LoginActivity.this, HomeActivity.class);
+            finish();
+        }
     }
 
     public void initComponent() {
@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }else{
                     Toast.makeText(this, "Not fully entered", Toast.LENGTH_SHORT).show();
                 }
-//                prefManager.setFirstTimeLogin(false);
-//                break;
+                prefManager.setFirstTimeLogin(false);
+                break;
         }
     }
 
