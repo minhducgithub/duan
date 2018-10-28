@@ -1,5 +1,6 @@
 package com.example.mrrs.schoolhelper;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mrrs.schoolhelper.model.Student;
 
@@ -15,6 +17,7 @@ import com.example.mrrs.schoolhelper.service.APIService;
 import com.example.mrrs.schoolhelper.service.Dataservice;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +85,16 @@ public class InfoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Student>> call, Throwable t) {
-
+                if (t instanceof IOException) {
+                    Toast.makeText(InfoActivity.this, "this is an actual network failure"+"\n"+" :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                    Intent numbersIntent = new Intent(InfoActivity.this, HomeActivity.class);
+                    startActivity(numbersIntent);
+                }
+                else {
+                    Toast.makeText(InfoActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
             }
         });
     }

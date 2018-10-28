@@ -78,7 +78,7 @@ public class ContactActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(ContactActivity.this, "Error: "+error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
         ){

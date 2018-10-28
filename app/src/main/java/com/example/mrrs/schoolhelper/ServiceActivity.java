@@ -2,6 +2,7 @@ package com.example.mrrs.schoolhelper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -37,6 +38,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,7 +241,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // redraw the marker when get location update.
-                drawMarker(location);
+//                drawMarker(location);
             }
 
             @Override
@@ -268,22 +270,22 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
                 mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
                 mp.title("My Position");
                 gmap.addMarker(mp);
-//                gmap.moveCamera(center);
-//                gmap.animateCamera(zoom);
+                gmap.moveCamera(center);
+                gmap.animateCamera(zoom);
         }
         });
         locationManager.requestLocationUpdates(provider, 20000, 0, locationListener);
     }
 
-    private void drawMarker(Location location) {
-        // Remove any existing markers on the map
-//        gmap.clear();
-        LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
-        gmap.addMarker(new MarkerOptions()
-                .position(currentPosition)
-                .snippet("Lat:" + location.getLatitude() + "Lng:" + location.getLongitude())
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .title("ME"));
+//    private void drawMarker(Location location) {
+//        // Remove any existing markers on the map
+////        gmap.clear();
+//        LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+//        gmap.addMarker(new MarkerOptions()
+//                .position(currentPosition)
+//                .snippet("Lat:" + location.getLatitude() + "Lng:" + location.getLongitude())
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+//                .title("ME"));
 //        gmap.setOnMarkerClickListener(
 //                new GoogleMap.OnMarkerClickListener() {
 //                    boolean doNotMoveCameraToCenterMarker = true;
@@ -293,7 +295,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
 //                        return doNotMoveCameraToCenterMarker;
 //                    }
 //                });
-    }
+//    }
 
     private void setMarker(Float mLat, Float mLong, String type) {
         LatLng place = new LatLng(mLat, mLong);
@@ -350,7 +352,16 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
 
             @Override
             public void onFailure(Call<List<LocationMap>> call, Throwable t) {
-
+                if (t instanceof IOException) {
+                    Toast.makeText(ServiceActivity.this, "this is an actual network failure" +"\n"+":( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                    Intent numbersIntent = new Intent(ServiceActivity.this, HomeActivity.class);
+                    startActivity(numbersIntent);
+                }
+                else {
+                    Toast.makeText(ServiceActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
             }
         });
 
