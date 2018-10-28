@@ -29,6 +29,7 @@ public class InfoActivity extends AppCompatActivity {
     TextView txt_block,txt_ten,txt_code,txt_course,txt_status
             ,txt_phone,txt_email,txt_address,txt_specialized,txt_start;
     ImageView imv_userstudent;
+    int index = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,17 +71,21 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 ArrayList<Student> info = (ArrayList<Student>) response.body();
-                Picasso.with(getApplicationContext()).load(info.get(0).getSvhinh()).into(imv_userstudent);
-                txt_ten.setText(info.get(0).getSvten());
-                txt_block.setText(info.get(0).getSvblock());
-                txt_code.setText(info.get(0).getSvcode());
-                txt_course.setText(info.get(0).getSvcourse());
-                txt_status.setText(info.get(0).getSvstatus());
-                txt_phone.setText(info.get(0).getSvphone());
-                txt_email.setText(info.get(0).getSvemail());
-                txt_address.setText(info.get(0).getSvaddress());
-                txt_specialized.setText(info.get(0).getSvspecialized());
-                txt_start.setText(info.get(0).getSvstart());
+                try{
+                    Picasso.with(getApplicationContext()).load(info.get(index).getSvhinh()).into(imv_userstudent);
+                    txt_ten.setText(info.get(index).getSvten());
+                    txt_block.setText(info.get(index).getSvblock());
+                    txt_code.setText(info.get(index).getSvcode());
+                    txt_course.setText(info.get(index).getSvcourse());
+                    txt_status.setText(info.get(index).getSvstatus());
+                    txt_phone.setText(info.get(index).getSvphone());
+                    txt_email.setText(info.get(index).getSvemail());
+                    txt_address.setText(info.get(index).getSvaddress());
+                    txt_specialized.setText(info.get(index).getSvspecialized());
+                    txt_start.setText(info.get(index).getSvstart());
+                }catch (Exception e){
+                    Toast.makeText(InfoActivity.this, "Error: "+e.toString(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
