@@ -55,7 +55,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 forgotemail = edt_forgotemail.getText().toString();
                 if (forgotemail.isEmpty()) {
-                    Toast.makeText(ForgotPasswordActivity.this, "Not fully entered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPasswordActivity.this, "Not fully entered!", Toast.LENGTH_SHORT).show();
                 }else {
                     checkEmail(forgotemail);
                 }
@@ -70,7 +70,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         if (matcher.find()) {
             SubmitForgotPassword(APIConnect.URL_FORGOT);
         } else {
-            Toast.makeText(ForgotPasswordActivity.this, "Email invalidate", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ForgotPasswordActivity.this, "Email invalidate!", Toast.LENGTH_SHORT).show();
         }
     }
     private void SubmitForgotPassword(String urlForgot) {

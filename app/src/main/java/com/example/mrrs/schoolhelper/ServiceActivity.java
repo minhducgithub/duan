@@ -2,6 +2,7 @@ package com.example.mrrs.schoolhelper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -106,6 +107,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         // Catch event
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                gmap.clear();
                 SearchMarker("Home");
                 //TODO something when floating action menu first item clicked
                 materialDesignFAM.close(true);
@@ -113,6 +115,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         });
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                gmap.clear();
                 SearchMarker("Food");
                 //TODO something when floating action menu first item clicked
                 materialDesignFAM.close(true);
@@ -120,6 +123,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         });
         floatingActionButton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                gmap.clear();
                 SearchMarker("Work");
                 //TODO something when floating action menu first item clicked
                 materialDesignFAM.close(true);
@@ -134,7 +138,6 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
                 Double longmap = Double.valueOf(locationMapArrayList.get(i).getLongmap());
                 String stay = locationMapArrayList.get(i).getStay();
                 if(stay.equals(select_stay)){
-                    gmap.clear();
                     CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(latmap, longmap));
                     CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
                     MarkerOptions mp = new MarkerOptions();
@@ -237,6 +240,9 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         // get current location
         // Getting LocationManager object from System Service LOCATION_SERVICE
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            Toast.makeText(this, "GPS is disable!", Toast.LENGTH_SHORT).show();
+        }
         // Creating a criteria object to retrieve provider
         criteria = new Criteria();
         // Getting the name of the best provider
@@ -245,40 +251,42 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         location = locationManager.getLastKnownLocation(provider);
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
-                // redraw the marker when get location update.
+                    // redraw the marker when get location update.
 //                drawMarker(location);
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-        //Get current
-        gmap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
                 CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
                 CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-//                gmap.clear();
+                gmap.clear();
                 MarkerOptions mp = new MarkerOptions();
                 mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
                 mp.title("My Position");
                 gmap.addMarker(mp);
                 gmap.moveCamera(center);
                 gmap.animateCamera(zoom);
-        }
-        });
+                }
+
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String provider) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String provider) {
+
+                }
+            };
+
+        //Get current
+//        gmap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+//            @Override
+//            public void onMyLocationChange(Location location) {
+//
+//        }
+//        });
         locationManager.requestLocationUpdates(provider, 20000, 0, locationListener);
     }
 
@@ -358,7 +366,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onFailure(Call<List<LocationMap>> call, Throwable t) {
                 if (t instanceof IOException) {
-                    Toast.makeText(ServiceActivity.this, "this is an actual network failure" +"\n"+":( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServiceActivity.this, "this is an actual network failure!" +"\n", Toast.LENGTH_SHORT).show();
                     // logging probably not necessary
                     Intent numbersIntent = new Intent(ServiceActivity.this, HomeActivity.class);
                     startActivity(numbersIntent);

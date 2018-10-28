@@ -84,10 +84,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onFailure(Call<List<Login>> call, Throwable t) {
                             if (t instanceof IOException) {
-                                Toast.makeText(LoginActivity.this, "this is an actual network failure"+"\n"+" :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "this is an actual network failure!"+"\n", Toast.LENGTH_SHORT).show();
                                 // logging probably not necessary
                             } else {
-                                Toast.makeText(LoginActivity.this, "The account or password is incorrect", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "The account or password is incorrect!", Toast.LENGTH_SHORT).show();
                                 // todo log to some central bug tracking service
                             }
                         }

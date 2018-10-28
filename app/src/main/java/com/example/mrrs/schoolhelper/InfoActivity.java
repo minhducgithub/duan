@@ -29,7 +29,7 @@ public class InfoActivity extends AppCompatActivity {
     TextView txt_block,txt_ten,txt_code,txt_course,txt_status
             ,txt_phone,txt_email,txt_address,txt_specialized,txt_start;
     ImageView imv_userstudent;
-    int index = 1;
+    int index = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +91,7 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Student>> call, Throwable t) {
                 if (t instanceof IOException) {
-                    Toast.makeText(InfoActivity.this, "this is an actual network failure"+"\n"+" :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InfoActivity.this, "this is an actual network failure!"+"\n", Toast.LENGTH_SHORT).show();
                     // logging probably not necessary
                     Intent numbersIntent = new Intent(InfoActivity.this, HomeActivity.class);
                     startActivity(numbersIntent);
