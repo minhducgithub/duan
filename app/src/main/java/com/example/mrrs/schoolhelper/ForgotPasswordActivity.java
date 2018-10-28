@@ -21,6 +21,8 @@ import com.example.mrrs.schoolhelper.service.APIConnect;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -51,18 +53,26 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         btnsubmitReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                forgotemail =edt_forgotemail.getText().toString();
-                if(forgotemail.isEmpty()){
+                forgotemail = edt_forgotemail.getText().toString();
+                if (forgotemail.isEmpty()) {
                     Toast.makeText(ForgotPasswordActivity.this, "Not fully entered", Toast.LENGTH_SHORT).show();
                 }else {
-                    SubmitForgotPassword(APIConnect.URL_FORGOT);
+                    checkEmail(forgotemail);
                 }
             }
 
-
         });
     }
-
+    private void checkEmail(String email) {
+        String emailPattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern regex = Pattern.compile(emailPattern);
+        Matcher matcher = regex.matcher(email);
+        if (matcher.find()) {
+            SubmitForgotPassword(APIConnect.URL_FORGOT);
+        } else {
+            Toast.makeText(ForgotPasswordActivity.this, "Email invalidate", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void SubmitForgotPassword(String urlForgot) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlForgot,
@@ -82,7 +92,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(ForgotPasswordActivity.this, "Error: "+error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
         ){

@@ -128,24 +128,29 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
     }
     //Search Display Marker
     private void SearchMarker (String select_stay){
-        for(int i = 0; i < locationMapArrayList.size(); i++){
-            Double latmap = Double.valueOf(locationMapArrayList.get(i).getLatmap());
-            Double longmap = Double.valueOf(locationMapArrayList.get(i).getLongmap());
-            String stay = locationMapArrayList.get(i).getStay();
-            if(stay.equals(select_stay)){
-                gmap.clear();
-                CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(latmap, longmap));
-                CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-                MarkerOptions mp = new MarkerOptions();
-                mp.position(new LatLng(latmap, longmap));
-                mp.title(select_stay);
-                mp.snippet("Lat: "+latmap +" Long: "+longmap);
-                mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                gmap.addMarker(mp);
-                gmap.moveCamera(center);
-                gmap.animateCamera(zoom);
+        try {
+            for(int i = 0; i < locationMapArrayList.size(); i++){
+                Double latmap = Double.valueOf(locationMapArrayList.get(i).getLatmap());
+                Double longmap = Double.valueOf(locationMapArrayList.get(i).getLongmap());
+                String stay = locationMapArrayList.get(i).getStay();
+                if(stay.equals(select_stay)){
+                    gmap.clear();
+                    CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(latmap, longmap));
+                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
+                    MarkerOptions mp = new MarkerOptions();
+                    mp.position(new LatLng(latmap, longmap));
+                    mp.title(select_stay);
+                    mp.snippet("Lat: "+latmap +" Long: "+longmap);
+                    mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                    gmap.addMarker(mp);
+                    gmap.moveCamera(center);
+                    gmap.animateCamera(zoom);
+                }
             }
+        }catch (Exception e){
+            Toast.makeText(this, "Error: "+e.toString(), Toast.LENGTH_SHORT).show();
         }
+
     }
     //  CHECK FOR LOCATION PERMISSION
     public static boolean checkPermission(Activity activity) {
