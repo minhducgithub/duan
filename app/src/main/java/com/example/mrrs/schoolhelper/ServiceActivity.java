@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -60,10 +63,12 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
     private LocationListener locationListener;
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     public static final int LOCATION_PERMISSION = 99;
+    private MarkerOptions mp = new MarkerOptions();
     private FloatingActionMenu materialDesignFAM;
     private FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
     CheckPermission checkPermission;
     private ArrayList<LocationMap> locationMapArrayList;
+    boolean isFirstTime = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +103,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         mapView.getMapAsync(this);
         // Assign float button
         handleFloatButton();
-
+//        setMapView();
 //        _getCurrentLocation();
     }
 
@@ -107,6 +112,11 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.service_floatBtn_item_home);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.service_floatBtn_item_food);
         floatingActionButton3 = (FloatingActionButton) findViewById(R.id.service_floatBtn_item_work);
+
+        floatingActionButton1.setImageResource(R.drawable.map_home);
+        floatingActionButton2.setImageResource(R.drawable.map_food);
+        floatingActionButton3.setImageResource(R.drawable.map_work);
+
         // Catch event
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -145,7 +155,6 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
                     Log.d("SELECT",stay + "\n" + "SELECT: " +select_stay);
                     CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(latmap, longmap));
                     CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-                    MarkerOptions mp = new MarkerOptions();
                     mp.position(new LatLng(latmap, longmap));
                     mp.title(select_stay);
                     mp.snippet("Lat: "+latmap +" Long: "+longmap);
@@ -164,13 +173,17 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
     private  void changeIcon(String value, MarkerOptions mp){
         switch (value) {
             case "Home" :
-//                mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-//                break;
-
+                mp.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_home));
+                break;
+            case "Foods" :
+                mp.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_food));
+                break;
+            case "Work" :
+                mp.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_work));
+                break;
             default:
-                    mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-
-                    break;
+                mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                break;
         }
     }
     //  CHECK FOR LOCATION PERMISSION
@@ -290,24 +303,24 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
 
         };
 
-        try{
-            gmap.clear();
-                CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
-                CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-                gmap.moveCamera(center);
-                gmap.animateCamera(zoom);
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
         gmap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
+                if(isFirstTime){
+                    CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
+                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
+                    mp.position(new LatLng(location.getLatitude(),location.getLongitude()));
+                    mp.title("My Location");
+                    mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                    mp.snippet("Lat: "+location.getLatitude()+" Long: "+location.getLongitude());
+                    gmap.addMarker(mp);
+                    gmap.moveCamera(center);
+                    gmap.animateCamera(zoom);
+                    isFirstTime = false;
+                }
         }
         });
     }
-
-
     private void setMarker(Float mLat, Float mLong, String type) {
         LatLng place = new LatLng(mLat, mLong);
         gmap.addMarker(new MarkerOptions()

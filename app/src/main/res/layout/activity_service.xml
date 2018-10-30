@@ -71,18 +71,20 @@
             android:id="@+id/service_floatBtn_item_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/home_schedule"
+            android:background="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_star"
+            app:backgroundTint="@android:color/transparent"
             fab:fab_label="@string/service_floatBtn_home"
             fab:fab_size="mini"
-            fab:menu_fab_hide_animation="@anim/fab_scale_down" />
+            fab:menu_fab_hide_animation="@anim/fab_scale_down"
+            tools:backgroundTint="@android:color/transparent" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/service_floatBtn_item_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/home_attendance"
+            android:background="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_star"
             fab:fab_label="@string/service_floatBtn_food"
@@ -93,7 +95,7 @@
             android:id="@+id/service_floatBtn_item_work"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/home_info"
+            android:background="@android:color/transparent"
             android:clickable="true"
             android:src="@drawable/ic_star"
             fab:fab_label="@string/service_floatBtn_works"
