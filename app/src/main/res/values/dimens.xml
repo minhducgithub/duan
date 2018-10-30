@@ -64,8 +64,8 @@
     <dimen name="attendance_padding_txt_list_parent">16dp</dimen>
     <dimen name="cardview_txtSize_lbl">30sp</dimen>
     <dimen name="card_view_item_height">60dp</dimen>
-    <dimen name="attendance_list_item_height">80dp</dimen>
+    <dimen name="attendance_list_item_height">60dp</dimen>
     <dimen name="attendance_list_item_marginLeft_txt">20dp</dimen>
     <dimen name="horizontal_margin">20dp</dimen>
-    <dimen name="attendance_list_item_txtSize">24sp</dimen>
+    <dimen name="attendance_list_item_txtSize">20sp</dimen>
 </resources>

@@ -91,7 +91,7 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Student>> call, Throwable t) {
                 if (t instanceof IOException) {
-                    Toast.makeText(InfoActivity.this, "this is an actual network failure!"+"\n", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InfoActivity.this, "this is an actual network failure!", Toast.LENGTH_SHORT).show();
                     // logging probably not necessary
                     Intent numbersIntent = new Intent(InfoActivity.this, HomeActivity.class);
                     startActivity(numbersIntent);

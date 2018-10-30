@@ -33,18 +33,20 @@
         <activity android:name=".LoginActivity" />
 
         <activity android:name=".welcome.WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".ForgotPasswordActivity" />
 
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".InfoActivity" />
 
         <activity android:name=".ContactActivity">

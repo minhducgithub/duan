@@ -16,12 +16,16 @@
         app:titleTextColor="@color/black"/>
     <LinearLayout
         android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/attendance_recycler_view"
         android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

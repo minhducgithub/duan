@@ -1,22 +1,22 @@
 <resources>
-    <string name="app_name">SchoolHelper</string>
-    <string name="title_activity_welcome">Welcome</string>
+    <string name="app_name">School Helper</string>
+    <string name="title_activity_welcome">Chào mừng</string>
 
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
+    <string name="next">Tiếp tục</string>
+    <string name="skip">Bỏ qua</string>
+    <string name="start">Đăng nhập</string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">SCHOOL HELPER</string>
+    <string name="slide_1_desc">Help all student!</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">Tìm mọi thứ bạn cần</string>
+    <string name="slide_2_desc">Chúng tôi giúp bạn có thể tìm được nhà trọ, khu ăn uống, việc làm nhanh nhất</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Quán lý thông tin</string>
+    <string name="slide_3_desc">Truy cập thông tin nhanh chóng!</string>
 
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+    <string name="slide_4_title">CÙNG KHÁM PHÁ</string>
+    <string name="slide_4_desc">Cùng khám phá ứng dụng nhé!</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>

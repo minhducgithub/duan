@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/user_default" />
             <TextView
                 android:id="@+id/service_user_name"

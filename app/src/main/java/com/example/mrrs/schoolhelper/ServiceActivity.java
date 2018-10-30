@@ -17,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -97,6 +98,8 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         mapView.getMapAsync(this);
         // Assign float button
         handleFloatButton();
+
+//        _getCurrentLocation();
     }
 
     private void handleFloatButton() {
@@ -116,7 +119,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 gmap.clear();
-                SearchMarker("Food");
+                SearchMarker("Foods");
                 //TODO something when floating action menu first item clicked
                 materialDesignFAM.close(true);
             }
@@ -132,19 +135,21 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
     }
     //Search Display Marker
     private void SearchMarker (String select_stay){
+        Log.d("LOCATION",select_stay);
         try {
             for(int i = 0; i < locationMapArrayList.size(); i++){
                 Double latmap = Double.valueOf(locationMapArrayList.get(i).getLatmap());
                 Double longmap = Double.valueOf(locationMapArrayList.get(i).getLongmap());
                 String stay = locationMapArrayList.get(i).getStay();
                 if(stay.equals(select_stay)){
+                    Log.d("SELECT",stay + "\n" + "SELECT: " +select_stay);
                     CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(latmap, longmap));
                     CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
                     MarkerOptions mp = new MarkerOptions();
                     mp.position(new LatLng(latmap, longmap));
                     mp.title(select_stay);
                     mp.snippet("Lat: "+latmap +" Long: "+longmap);
-                    mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                    changeIcon(select_stay, mp);
                     gmap.addMarker(mp);
                     gmap.moveCamera(center);
                     gmap.animateCamera(zoom);
@@ -154,6 +159,19 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
             Toast.makeText(this, "Error: "+e.toString(), Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private  void changeIcon(String value, MarkerOptions mp){
+        switch (value) {
+            case "Home" :
+//                mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+//                break;
+
+            default:
+                    mp.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+                    break;
+        }
     }
     //  CHECK FOR LOCATION PERMISSION
     public static boolean checkPermission(Activity activity) {
@@ -249,66 +267,46 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
         provider = locationManager.getBestProvider(criteria, true);
         // Getting Current LocationMap
         location = locationManager.getLastKnownLocation(provider);
+
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                     // redraw the marker when get location update.
-//                drawMarker(location);
+//                    drawMarker(location);
+            }
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+
+        };
+
+        try{
+            gmap.clear();
                 CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude()));
                 CameraUpdate zoom = CameraUpdateFactory.zoomTo(16);
-                gmap.clear();
-                MarkerOptions mp = new MarkerOptions();
-                mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-                mp.title("My Position");
-                gmap.addMarker(mp);
                 gmap.moveCamera(center);
                 gmap.animateCamera(zoom);
-                }
-
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String provider) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-
-                }
-            };
-
-        //Get current
-//        gmap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-//            @Override
-//            public void onMyLocationChange(Location location) {
-//
-//        }
-//        });
-        locationManager.requestLocationUpdates(provider, 20000, 0, locationListener);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        gmap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+        }
+        });
     }
 
-//    private void drawMarker(Location location) {
-//        // Remove any existing markers on the map
-////        gmap.clear();
-//        LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
-//        gmap.addMarker(new MarkerOptions()
-//                .position(currentPosition)
-//                .snippet("Lat:" + location.getLatitude() + "Lng:" + location.getLongitude())
-//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-//                .title("ME"));
-//        gmap.setOnMarkerClickListener(
-//                new GoogleMap.OnMarkerClickListener() {
-//                    boolean doNotMoveCameraToCenterMarker = true;
-//
-//                    public boolean onMarkerClick(Marker marker) {
-//                        //Do whatever you need to do here ....
-//                        return doNotMoveCameraToCenterMarker;
-//                    }
-//                });
-//    }
 
     private void setMarker(Float mLat, Float mLong, String type) {
         LatLng place = new LatLng(mLat, mLong);
@@ -366,7 +364,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onFailure(Call<List<LocationMap>> call, Throwable t) {
                 if (t instanceof IOException) {
-                    Toast.makeText(ServiceActivity.this, "this is an actual network failure!" +"\n", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServiceActivity.this, "this is an actual network failure!", Toast.LENGTH_SHORT).show();
                     // logging probably not necessary
                     Intent numbersIntent = new Intent(ServiceActivity.this, HomeActivity.class);
                     startActivity(numbersIntent);
