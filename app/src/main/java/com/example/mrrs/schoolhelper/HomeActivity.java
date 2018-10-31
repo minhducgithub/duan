@@ -11,17 +11,33 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.mrrs.schoolhelper.InfoActivity;
+import com.example.mrrs.schoolhelper.model.Student;
+import com.example.mrrs.schoolhelper.service.APIService;
+import com.example.mrrs.schoolhelper.service.Dataservice;
 import com.example.mrrs.schoolhelper.welcome.WelcomeActivity;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private LinearLayout info, contact, service, schedule, attendance;
     public static final int LOCATION_PERMISSION = 99;
-
+    private ImageView home_imv_user;
+    private TextView home_txt_block, home_txt_course, home_txt_name, home_txt_code;
+    int indexStudent = InfoActivity.indexStudent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +58,42 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
         initComponent();
         setOnClickListenerForComponent();
+        GetDataInfoHome();
     }
 
+    private void GetDataInfoHome() {
+        Dataservice dataservice = APIService.getService();
+        Call<List<Student>> callback = dataservice.GetDataInfoStudent();
+        callback.enqueue(new Callback<List<Student>>() {
+            @Override
+            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                ArrayList<Student> infoStudent = (ArrayList<Student>) response.body();
+                try{
+                    Picasso.with(getApplicationContext()).load(infoStudent.get(indexStudent).getSvhinh()).into(home_imv_user);
+                    home_txt_name.setText(infoStudent.get(indexStudent).getSvten());
+                    home_txt_block.setText(infoStudent.get(indexStudent).getSvblock());
+                    home_txt_code.setText(infoStudent.get(indexStudent).getSvcode());
+                    home_txt_course.setText(infoStudent.get(indexStudent).getSvcourse());
+                }catch (Exception e){
+                    Toast.makeText(HomeActivity.this, "Error: "+e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Student>> call, Throwable t) {
+                if (t instanceof IOException) {
+                    Toast.makeText(HomeActivity.this, "this is an actual network failure!", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                    Intent numbersIntent = new Intent(HomeActivity.this, HomeActivity.class);
+                    startActivity(numbersIntent);
+                }
+                else {
+                    Toast.makeText(HomeActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
+            }
+        });
+    }
     private void setOnClickListenerForComponent() {
         info.setOnClickListener(this);
         contact.setOnClickListener(this);
@@ -58,8 +108,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         service = findViewById(R.id.home_option_Service);
         schedule = findViewById(R.id.home_option_schedule);
         attendance = findViewById(R.id.home_option_attendance);
+        home_imv_user = findViewById(R.id.home_avt_user);
+        home_txt_name = findViewById(R.id.home_lbl_name);
+        home_txt_block = findViewById(R.id.home_txt_block);
+        home_txt_course = findViewById(R.id.home_txt_course);
+        home_txt_code = findViewById(R.id.home_txt_code);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

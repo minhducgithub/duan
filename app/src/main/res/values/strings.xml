@@ -73,4 +73,5 @@
     <string name="lable_start">Start:</string>
     <string name="current_start">20/09/2016</string>
     <string name="lable_phone">Phone:</string>
+    <string name="home_label_default_code">Code:</string>
 </resources>

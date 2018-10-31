@@ -14,10 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal"
-        android:paddingEnd="15dp"
-        android:paddingRight="15dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:titleTextColor="@color/black" />
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        <ImageView
+            android:layout_margin="5dp"
+            android:src="@drawable/logofpt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
     <!--View basic informations-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,16 +32,16 @@
         <!--Show user's name -->
         <TextView
             android:id="@+id/home_lbl_name"
-            android:text="@string/author_name"
-            android:textSize="@dimen/home_txtSize_lblName"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:maxLines="1"
-            android:maxLength="22"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLength="22"
+            android:maxLines="1"
+            android:text="@string/author_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/home_txtSize_lblName"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,11 +56,10 @@
                 android:orientation="vertical"
                 android:layout_height="match_parent">
                 <!--User's avatar-->
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/home_avt_user"
                     android:layout_gravity="center"
                     android:src="@drawable/user_default"
-                    android:adjustViewBounds="true"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
             </LinearLayout>
@@ -74,6 +76,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textStyle="bold"
                         android:text="@string/home_label_block"
                         android:textSize="@dimen/home_txtSize_lbl"
                         android:textColor="@color/black"
@@ -81,6 +84,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/home_txt_block"
                         android:text="@string/home_label_default_block"
                         android:textSize="@dimen/home_txtSize_lbl"
                         android:textColor="@color/black"
@@ -95,6 +99,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textStyle="bold"
                         android:text="@string/home_label_course"
                         android:textSize="@dimen/home_txtSize_lbl"
                         android:textColor="@color/black"
@@ -102,13 +107,33 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/home_txt_course"
                         android:text="@string/home_label_default_course"
                         android:textSize="@dimen/home_txtSize_lbl"
                         android:textColor="@color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="@string/home_label_default_code"
+                        android:textSize="@dimen/home_txtSize_lbl"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/home_txt_code"
+                        android:textSize="@dimen/home_txtSize_lbl"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
