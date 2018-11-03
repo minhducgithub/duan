@@ -5,16 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ScheduleActivity">
+    tools:context=".NewsActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/schedule_toolbar"
+        android:id="@+id/news_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/all_activity_toolbar_height"
         android:background="@color/backgroundColor"
         android:gravity="center_vertical"
         android:theme="@style/AppTheme"
         app:titleTextColor="@color/black" />
-
+    <WebView
+        android:id="@+id/news_webviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
 
 </LinearLayout>

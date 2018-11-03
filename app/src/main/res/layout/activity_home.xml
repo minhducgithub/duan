@@ -184,7 +184,7 @@
             </LinearLayout>
             <!--Contact-->
             <LinearLayout
-                android:id="@+id/home_option_contact"
+                android:id="@+id/home_option_schedule"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:orientation="vertical"
@@ -195,14 +195,14 @@
                 android:layout_height="match_parent">
                 <!--Icon-->
                 <ImageView
-                    android:src="@drawable/ic_contact"
+                    android:src="@drawable/ic_schedule"
                     android:adjustViewBounds="true"
                     android:tint="@color/white"
                     android:layout_width="@dimen/home_icon_option_width"
                     android:layout_height="@dimen/home_icon_option_height" />
                 <!--Label-->
                 <TextView
-                    android:text="@string/contact"
+                    android:text="@string/news"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/home_option_label"
@@ -215,7 +215,7 @@
 
         <!--Row content: Service-->
         <LinearLayout
-            android:id="@+id/home_option_Service"
+            android:id="@+id/home_option_attendance"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
@@ -226,23 +226,21 @@
 
             <!--Icon-->
             <ImageView
-                android:src="@drawable/ic_service"
+                android:src="@drawable/ic_attendance"
                 android:adjustViewBounds="true"
                 android:tint="@color/white"
                 android:layout_width="@dimen/home_icon_option_width"
                 android:layout_height="@dimen/home_icon_option_height" />
 
             <!--Label-->
-
             <TextView
-                android:text="@string/service"
+                android:text="@string/attendance"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/home_option_label"
                 android:layout_marginTop="@dimen/home_option_mrgTop_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
         </LinearLayout>
 
         <!--Row content: Schedule and Attendance options-->
@@ -252,10 +250,9 @@
             android:orientation="horizontal"
             android:layout_weight="1"
             android:weightSum="2">
-
             <!--SCHEDULE-->
             <LinearLayout
-                android:id="@+id/home_option_schedule"
+                android:id="@+id/home_option_Service"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:orientation="vertical"
@@ -264,31 +261,26 @@
                 android:gravity="center"
                 android:background="@color/home_schedule"
                 android:layout_height="match_parent">
-
                 <!--Icon-->
                 <ImageView
-                    android:src="@drawable/ic_schedule"
+                    android:src="@drawable/ic_service"
                     android:adjustViewBounds="true"
                     android:tint="@color/white"
                     android:layout_width="@dimen/home_icon_option_width"
                     android:layout_height="@dimen/home_icon_option_height" />
-
                 <!--Label-->
-
                 <TextView
-                    android:text="@string/schedule"
+                    android:text="@string/service"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/home_option_label"
                     android:layout_marginTop="@dimen/home_option_mrgTop_lbl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
             </LinearLayout>
-
             <!--ATTENDANCE-->
             <LinearLayout
-                android:id="@+id/home_option_attendance"
+                android:id="@+id/home_option_contact"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:orientation="vertical"
@@ -297,19 +289,16 @@
                 android:gravity="center"
                 android:background="@color/home_attendance"
                 android:layout_height="match_parent">
-
                 <!--Icon-->
                 <ImageView
-                    android:src="@drawable/ic_attendance"
+                    android:src="@drawable/ic_contact"
                     android:adjustViewBounds="true"
                     android:tint="@color/white"
                     android:layout_width="@dimen/home_icon_option_width"
                     android:layout_height="@dimen/home_icon_option_height" />
-
                 <!--Label-->
-
                 <TextView
-                    android:text="@string/attendance"
+                    android:text="@string/contact"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/home_option_label"

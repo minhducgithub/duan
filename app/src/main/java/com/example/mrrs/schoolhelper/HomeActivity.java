@@ -9,17 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.mrrs.schoolhelper.InfoActivity;
+
 import com.example.mrrs.schoolhelper.model.Student;
 import com.example.mrrs.schoolhelper.service.APIService;
 import com.example.mrrs.schoolhelper.service.Dataservice;
-import com.example.mrrs.schoolhelper.welcome.WelcomeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -84,8 +81,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if (t instanceof IOException) {
                     Toast.makeText(HomeActivity.this, "this is an actual network failure!", Toast.LENGTH_SHORT).show();
                     // logging probably not necessary
-                    Intent numbersIntent = new Intent(HomeActivity.this, HomeActivity.class);
-                    startActivity(numbersIntent);
                 }
                 else {
                     Toast.makeText(HomeActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
@@ -131,7 +126,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.home_option_schedule:
                 Log.d("Clicked", "Schedule");
-                changeScreen(HomeActivity.this, ScheduleActivity.class);
+                changeScreen(HomeActivity.this, NewsActivity.class);
                 break;
             case R.id.home_option_attendance:
                 Log.d("Clicked", "Attendance");
