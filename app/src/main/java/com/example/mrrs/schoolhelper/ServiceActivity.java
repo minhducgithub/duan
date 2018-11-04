@@ -170,7 +170,7 @@ public class ServiceActivity extends AppCompatActivity implements OnMapReadyCall
 
     }
 
-    private  void changeIcon(String value, MarkerOptions mp){
+    private void changeIcon(String value, MarkerOptions mp){
         switch (value) {
             case "Home" :
                 mp.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_home));

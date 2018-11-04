@@ -5,16 +5,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mrrs.schoolhelper.R;
+import com.example.mrrs.schoolhelper.model.Attendance;
 import com.example.mrrs.schoolhelper.model.AttendanceModel;
 import com.example.mrrs.schoolhelper.viewholders.Attendance_GenreViewHolder;
 import com.example.mrrs.schoolhelper.viewholders.Attendance_ModelViewHolder;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Attendance_GenreAdapter extends ExpandableRecyclerViewAdapter<Attendance_GenreViewHolder, Attendance_ModelViewHolder> {
-
+    int Ver = 1;
     public Attendance_GenreAdapter(List<? extends ExpandableGroup> groups) {
         super(groups);
     }
@@ -33,8 +35,17 @@ public class Attendance_GenreAdapter extends ExpandableRecyclerViewAdapter<Atten
 
     @Override
     public void onBindChildViewHolder(Attendance_ModelViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
-        AttendanceModel model = (AttendanceModel) group.getItems().get(childIndex);
-        holder.setModelName(model.getName());
+            Attendance model = (Attendance) group.getItems().get(childIndex);
+            holder.setModelName("Ngày học: "+model.getNgay()+"\n"
+                    +"Phòng: "+model.getPhong()+"\n"
+                    +"Giảng đường: "+model.getGiangduong()+"\n"
+                    +"Mã môn: "+model.getMamon()+"\n"
+                    +"Môn: "+model.getMon()+"\n"
+                    +"Lớp: "+model.getLop()+"\n"
+                    +"Giảng viên: "+model.getGiangvien()+"\n"
+                    +"Thời gian: "+model.getThoigian()+"\n"
+                    +"Chi tiết: "+model.getChitiet());
+
     }
 
     @Override

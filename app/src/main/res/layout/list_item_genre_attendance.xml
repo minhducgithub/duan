@@ -5,21 +5,22 @@
     android:layout_gravity="center_vertical"
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
     android:background="@drawable/custom_btn"
     android:orientation="horizontal">
 
     <TextView
+        android:ellipsize="end"
+        android:singleLine="true"
         android:id="@+id/attendance_list_item_genre_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="30dp"
         android:layout_weight="1"
-        android:maxLength="10"
-        android:text="Genre"
-        android:textColor="@color/backgroundColor"
+        android:maxLength="25"
+        android:textColor="@color/white"
         android:textSize="@dimen/attendance_list_item_txtSize"
         android:textStyle="bold" />
 

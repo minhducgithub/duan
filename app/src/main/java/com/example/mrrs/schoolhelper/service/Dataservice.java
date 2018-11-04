@@ -1,4 +1,5 @@
 package com.example.mrrs.schoolhelper.service;
+import com.example.mrrs.schoolhelper.model.Attendance;
 import com.example.mrrs.schoolhelper.model.LocationMap;
 import com.example.mrrs.schoolhelper.model.Login;
 import com.example.mrrs.schoolhelper.model.Student;
@@ -14,6 +15,8 @@ public interface Dataservice {
     Call<List<Student>> GetDataInfoStudent();
     @GET("location.php")
     Call<List<LocationMap>> GetDataLocation();
+    @GET("attendance.php")
+    Call<List<Attendance>> GetDataAttendance();
 
     @FormUrlEncoded
     @POST("login.php")
