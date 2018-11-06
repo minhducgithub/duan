@@ -33,7 +33,6 @@ public class AttendanceActivity extends AppCompatActivity {
     private List<Genre_Attendance> genres = new ArrayList<>();
     private Attendance_GenreAdapter mAdapter;
     private ArrayList<Attendance> attendanceArrayList = new ArrayList<>();
-    int indexAttendance = 0;
     String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

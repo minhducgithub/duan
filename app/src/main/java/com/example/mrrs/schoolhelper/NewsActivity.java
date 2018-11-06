@@ -30,7 +30,7 @@ public class NewsActivity extends AppCompatActivity {
         });
         try{
             news_webview = (WebView) findViewById(R.id.news_webviews);
-            news_webview.loadUrl("http://ap.poly.edu.vn/news/home.php");
+            news_webview.loadUrl("http://ap.poly.edu.vn/news");
             news_webview.setWebViewClient(new WebViewClient());
             news_settings = news_webview.getSettings();
             news_settings.setJavaScriptEnabled(true);
